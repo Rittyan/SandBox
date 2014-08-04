@@ -1,0 +1,19 @@
+!!!
+%html{:lang => "ja"}
+  %head
+    %meta{:charset => "UTF-8"}
+    :css
+      .myClass{
+        color:red
+      }
+    :javascript
+      alert(1)
+  %body
+    -# comment
+    %div#main.myClass
+      hello world!
+    #container
+      .subClass
+      :escaped
+        <html>
+        </html>

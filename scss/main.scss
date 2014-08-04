@@ -1,0 +1,89 @@
+@import "settings";
+@import "functions";
+
+// このコメントだと表示されないYO
+
+$baseFontSize:14px; // 変数
+
+$imgDir: "../img/"; // 文字列
+$brandColor: rgba(255,0,0,0.9); // 色の指定
+
+$debugMode: true;
+
+$animals: cat, dog, tiger;
+
+//@each $animal in $animals {
+//  .#{$animal}-icon {background: url("#{$animal}.png");}
+//}
+
+@each $animal in car,dog,tiger {
+  .#{$animal}-icon {background: url("#{$animal}.png");}
+}
+
+@for $i from 10 through 14 {
+  .fs#{$i} { font-size: #{$i}px }
+}
+
+//$j: 15;
+//@while $j <= 20{
+//  .fs#{$j} { font-size: #{$j}px }
+//
+//  $j: $j + 1;
+//}
+
+
+#main {
+
+  /* if文 */
+  @if $debugMode == true {
+    width: 65%;
+  } @else {
+    width: 90%;
+  }
+
+  background: url("#{$imgDir}bg.png");
+  color: lighten($brandColor,30%);
+
+  p {
+    font-size: $baseFontSize;
+    .sub {
+      font-size: $baseFontSize - 2px;
+    }
+  }
+}
+
+// 関数
+
+.grid {
+  float: left;
+  width: getColumnWidth($totalWidth, $columnCount);
+}
+
+// 定数
+@mixin round($pixel:5px) {
+  border-radius: $pixel;
+}
+
+.label {
+  font-size:12px;
+  @include round(10px);
+}
+
+// 継承
+
+.msg {
+  font-size: 12px;
+  font-weight: bold;
+  padding: 2px 4px;
+  color: white;
+}
+
+.errorMsg {
+  @extend .msg;
+  background: red;
+}
+
+.warningMsg {
+  @extend .msg;
+  background: orange;
+}
